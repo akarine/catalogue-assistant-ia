@@ -46,6 +46,16 @@ class ProductControllerTest {
     }
 
     @Test
+    void listeDesCategories() throws Exception {
+        when(catalogService.categories()).thenReturn(List.of("Jardin", "Peinture"));
+
+        mvc.perform(get("/api/products/categories"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0]").value("Jardin"))
+                .andExpect(jsonPath("$[1]").value("Peinture"));
+    }
+
+    @Test
     void prixMaxNegatifRefuse() throws Exception {
         mvc.perform(get("/api/products").param("maxPrice", "-5"))
                 .andExpect(status().isBadRequest());

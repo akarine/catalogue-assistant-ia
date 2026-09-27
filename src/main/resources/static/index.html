@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Catalogue Assistant IA</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="header">
+    <div class="header__inner">
+        <h1 class="logo">🔧 Brico<span>Assistant</span></h1>
+        <nav class="tabs" role="tablist">
+            <button class="tab is-active" role="tab" aria-selected="true" data-panel="catalogue">Catalogue</button>
+            <button class="tab" role="tab" aria-selected="false" data-panel="assistant">Assistant IA</button>
+        </nav>
+    </div>
+</header>
+
+<main class="container">
+    <!-- Catalogue -->
+    <section id="catalogue" class="panel is-active" role="tabpanel">
+        <form id="filters" class="filters">
+            <label>Recherche
+                <input type="search" name="q" placeholder="perceuse, peinture…">
+            </label>
+            <label>Catégorie
+                <select name="category">
+                    <option value="">Toutes</option>
+                </select>
+            </label>
+            <label>Prix max (€)
+                <input type="number" name="maxPrice" min="0" step="1" placeholder="illimité">
+            </label>
+            <button type="submit" class="btn">Rechercher</button>
+        </form>
+        <p id="results-count" class="muted" aria-live="polite"></p>
+        <div id="products" class="grid"></div>
+    </section>
+
+    <!-- Assistant IA -->
+    <section id="assistant" class="panel" role="tabpanel">
+        <div class="chat">
+            <div id="messages" class="chat__messages" aria-live="polite">
+                <div class="msg msg--bot">
+                    Bonjour ! Je suis l'assistant du magasin. Posez-moi une question sur nos produits, nos prix ou nos stocks.
+                </div>
+            </div>
+            <div class="suggestions">
+                <button class="chip" type="button">Une perceuse à moins de 100 € en stock ?</button>
+                <button class="chip" type="button">Avez-vous un taille-haie disponible ?</button>
+                <button class="chip" type="button">Quelles catégories vendez-vous ?</button>
+            </div>
+            <form id="chat-form" class="chat__form">
+                <input id="question" type="text" maxlength="500" autocomplete="off"
+                       placeholder="Votre question…" aria-label="Votre question" required>
+                <button type="submit" class="btn">Envoyer</button>
+            </form>
+        </div>
+    </section>
+</main>
+
+<footer class="footer muted">
+    Java 21 · Spring Boot 4 · Spring AI — <a href="https://github.com/akarine/catalogue-assistant-ia">code source</a>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

@@ -32,6 +32,11 @@ public class ProductController {
         return catalogService.search(category, maxPrice, q);
     }
 
+    @GetMapping("/categories")
+    public List<String> categories() {
+        return catalogService.categories();
+    }
+
     @GetMapping("/{id}")
     public ProductDto findById(@PathVariable Long id) {
         return catalogService.findById(id);

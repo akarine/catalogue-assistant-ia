@@ -5,7 +5,7 @@ en interrogeant lui-même une **API REST catalogue** (recherche de produits, sto
 
 *English version below.*
 
-![Java 21](https://img.shields.io/badge/Java-21-orange) ![Spring Boot 4](https://img.shields.io/badge/Spring%20Boot-4.1-6db33f) ![Spring AI 2](https://img.shields.io/badge/Spring%20AI-2.0-6db33f) ![Tests](https://img.shields.io/badge/tests-21%20JUnit%205-blue)
+![Java 21](https://img.shields.io/badge/Java-21-orange) ![Spring Boot 4](https://img.shields.io/badge/Spring%20Boot-4.1-6db33f) ![Spring AI 2](https://img.shields.io/badge/Spring%20AI-2.0-6db33f) ![Tests](https://img.shields.io/badge/tests-22%20JUnit%205-blue)
 
 ## Exemple
 
@@ -22,6 +22,13 @@ curl -s -X POST localhost:8080/api/assistant/chat \
 Pour répondre, l'agent a **choisi seul** d'appeler deux outils Java : la recherche dans le catalogue, puis la vérification du stock.
 Une question hors sujet (« Quelle est la capitale du Japon ? ») est poliment refusée.
 
+## Interface web
+
+L'application embarque une interface (HTML / CSS / JavaScript, sans framework) sur `http://localhost:8080` :
+
+- **Catalogue** : recherche, filtres par catégorie et prix maximum, cartes produit avec état du stock ;
+- **Assistant IA** : fenêtre de discussion avec l'agent, questions suggérées, gestion des erreurs (quota, indisponibilité).
+
 ## Fonctionnalités
 
 **API REST catalogue**
@@ -29,6 +36,7 @@ Une question hors sujet (« Quelle est la capitale du Japon ? ») est poliment r
 | Méthode | URL | Description |
 |---|---|---|
 | `GET` | `/api/products?category=&maxPrice=&q=` | Recherche multicritère (catégorie, prix max, texte), triée par prix |
+| `GET` | `/api/products/categories` | Liste des catégories |
 | `GET` | `/api/products/{id}` | Fiche produit (404 au format Problem Details si inconnu) |
 | `GET` | `/api/products/{id}/availability` | Stock et disponibilité |
 | `POST` | `/api/products` | Création d'un produit (validation, 201 + en-tête `Location`) |
@@ -64,7 +72,7 @@ flowchart LR
 ## Stack technique
 
 Java 21 · Spring Boot 4.1 (Spring MVC, Spring Data JPA, Bean Validation) · Spring AI 2.0 (Google Gemini, Mistral AI) ·
-H2 · Maven · JUnit 5 · Mockito · AssertJ · MockMvc
+H2 · Maven · JUnit 5 · Mockito · AssertJ · MockMvc · HTML / CSS / JavaScript
 
 ## Lancer le projet
 
@@ -80,7 +88,8 @@ cp .env.example .env
 # 2. Démarrer
 ./mvnw spring-boot:run
 
-# 3. Essayer
+# 3. Ouvrir l'interface : http://localhost:8080
+#    ou interroger l'API directement :
 curl "localhost:8080/api/products?q=perceuse&maxPrice=100"
 ```
 
@@ -93,7 +102,7 @@ Console de la base : `http://localhost:8080/h2-console` (URL JDBC `jdbc:h2:mem:c
 ./mvnw test
 ```
 
-21 tests : requêtes JPA sur base H2 (`@DataJpaTest`), logique métier et outils de l'agent (Mockito),
+22 tests : requêtes JPA sur base H2 (`@DataJpaTest`), logique métier et outils de l'agent (Mockito),
 contrôleurs REST (`@WebMvcTest` : 200, 201, 400, 404, 503).
 Les tests n'appellent aucun fournisseur d'IA.
 
@@ -115,7 +124,7 @@ by calling a **product catalogue REST API** by itself (product search, stock ava
 - **Grounded answers**: the system prompt requires the model to rely only on catalogue data and to decline off-topic questions.
 - **Pluggable AI provider**: Google Gemini or Mistral AI, selected through configuration only.
 - **Graceful degradation**: the catalogue API works without any AI provider; provider errors are returned as RFC 9457 Problem Details.
-- **Stack**: Java 21, Spring Boot 4.1, Spring AI 2.0, Spring Data JPA, H2, Maven, JUnit 5, Mockito (21 tests).
+- **Stack**: Java 21, Spring Boot 4.1, Spring AI 2.0, Spring Data JPA, H2, Maven, JUnit 5, Mockito (22 tests), plus a plain HTML / JavaScript web UI (catalogue + chat).
 
 Run: `cp .env.example .env`, set `AI_CHAT_MODEL=google-genai` and `GEMINI_API_KEY`, then `./mvnw spring-boot:run`.
 
