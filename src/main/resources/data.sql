@@ -1,0 +1,16 @@
+INSERT INTO product (reference, name, category, brand, price, stock, description) VALUES
+('PER-001', 'Perceuse-visseuse sans fil 18V', 'Outillage électroportatif', 'Makita', 129.90, 12, 'Perceuse-visseuse 18V avec 2 batteries 2Ah, chargeur et coffret. Couple 50 Nm.'),
+('PER-002', 'Perceuse à percussion filaire 750W', 'Outillage électroportatif', 'Bosch', 79.90, 5, 'Perceuse à percussion pour béton, brique et bois. Mandrin 13 mm.'),
+('PER-003', 'Visseuse compacte 12V', 'Outillage électroportatif', 'Ryobi', 59.90, 0, 'Visseuse légère pour petits travaux, idéale pour le montage de meubles.'),
+('SCI-001', 'Scie sauteuse 650W', 'Outillage électroportatif', 'Black+Decker', 69.90, 8, 'Scie sauteuse pendulaire, coupe bois jusqu''à 85 mm.'),
+('PON-001', 'Ponceuse excentrique 300W', 'Outillage électroportatif', 'Bosch', 89.00, 3, 'Ponceuse avec aspiration intégrée, plateau 125 mm.'),
+('MAR-001', 'Marteau de charpentier 600 g', 'Outillage à main', 'Stanley', 19.90, 40, 'Manche fibre de verre anti-vibrations.'),
+('TOU-001', 'Coffret de tournevis 12 pièces', 'Outillage à main', 'Facom', 34.90, 22, 'Tournevis plats et cruciformes, embouts aimantés.'),
+('MET-001', 'Mètre ruban 5 m', 'Outillage à main', 'Stanley', 9.90, 60, 'Ruban auto-bloquant, boîtier antichoc.'),
+('NIV-001', 'Niveau à bulle 60 cm', 'Outillage à main', 'Stanley', 24.90, 15, 'Niveau aluminium, 3 fioles, précision 0,5 mm/m.'),
+('PEI-001', 'Peinture murale blanc mat 10 L', 'Peinture', 'Dulux Valentine', 54.90, 30, 'Peinture acrylique intérieure, haute opacité, lessivable.'),
+('PEI-002', 'Rouleau anti-goutte 180 mm', 'Peinture', 'Nespoli', 12.90, 25, 'Rouleau microfibre pour murs et plafonds.'),
+('JAR-001', 'Tondeuse à gazon sans fil 36V', 'Jardin', 'Greenworks', 299.00, 4, 'Tondeuse sur batterie, coupe 41 cm, bac 50 L.'),
+('JAR-002', 'Taille-haie électrique 500W', 'Jardin', 'Bosch', 99.90, 0, 'Lame 50 cm, coupe des branches jusqu''à 20 mm.'),
+('JAR-003', 'Tuyau d''arrosage 25 m', 'Jardin', 'Gardena', 39.90, 18, 'Tuyau anti-torsion avec raccords et lance multi-jets.'),
+('ELE-001', 'Ampoule LED E27 60W (lot de 3)', 'Électricité', 'Philips', 11.90, 100, 'Ampoules LED blanc chaud, 806 lumens.');

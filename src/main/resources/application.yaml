@@ -1,0 +1,36 @@
+spring:
+  application:
+    name: catalogue-assistant-ia
+  config:
+    import: optional:file:.env[.properties]   # clé API locale, hors Git
+  datasource:
+    url: jdbc:h2:mem:catalogue
+  jpa:
+    open-in-view: false
+    defer-datasource-initialization: true   # data.sql est exécuté après la création des tables
+  h2:
+    console:
+      enabled: true
+  ai:
+    mistralai:
+      api-key: ${MISTRAL_API_KEY:}
+      chat:
+        options:
+          model: mistral-small-latest   # gère l'appel d'outils (tool calling)
+          temperature: 0.2
+    google:
+      genai:
+        api-key: ${GEMINI_API_KEY:}
+        chat:
+          options:
+            model: ${GEMINI_MODEL:gemini-3.8-flash}
+            temperature: 0.2
+    model:
+      # Fournisseur de l'agent, choisi dans .env : AI_CHAT_MODEL=google-genai (Gemini) ou mistral.
+      # "none" par défaut : l'API catalogue fonctionne sans IA.
+      chat: ${AI_CHAT_MODEL:none}
+      embedding: none        # Mistral
+      embedding.text: none   # Gemini
+      image: none
+      moderation: none
+      ocr: none
